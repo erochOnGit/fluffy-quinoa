@@ -35,7 +35,7 @@ public class SubSrv extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String namy = request.getParameter("name");
+		String name = request.getParameter("name");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		String tel = request.getParameter("tel");
