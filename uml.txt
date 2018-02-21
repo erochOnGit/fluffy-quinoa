@@ -1,0 +1,25 @@
+@startuml
+User <|-- Object
+Trajet o-- User
+
+class User {
+ -id
+ #firstName
+ #lastName
+ ~method1()
+ +method2()
+}
+class Trajet{
+ id
+ -conducteur : User
+ #passager : User[]
+ -getConducteur(id) : User
+ -setConducteur(id,User) 
+ #getPassager(id) : User
+ #setPassager(id,User)
+}
+
+ArrayList : Object[] elementData
+ArrayList : size()
+
+@enduml
