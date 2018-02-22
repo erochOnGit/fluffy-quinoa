@@ -80,5 +80,6 @@ public class TrajetBean {
 		this.arr_date = arr_date;
 	}
 	
-	
+	public void ProposerTrajet() {
+	}
 }
