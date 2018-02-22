@@ -23,9 +23,9 @@ public class AuthBean {
 	}
 	
 	/**
-	 * Verifier user valide et enregistrer.
+	 * Verifier user valide et en base selon email et mot de passe.
 	 */
-	public boolean isValidUser(String email, String pwd) {
+	public boolean isValidUser() {
 		return false;
 	}
 	
