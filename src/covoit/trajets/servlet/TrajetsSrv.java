@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TrajetsSrv")
 public class TrajetsSrv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static String VIEW_PAGES_URL="/WEB-INF/trip/trip.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,7 +28,8 @@ public class TrajetsSrv extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).include( request, response );
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
