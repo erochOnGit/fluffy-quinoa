@@ -97,12 +97,12 @@ public class TrajetsSrv extends HttpServlet {
 		respJSON = gson.toJson(trajetBean);
 		
 		TRAJETS_PARAM = respJSON;
+
 		
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(respJSON);
 		
-
 	}
 
 }
