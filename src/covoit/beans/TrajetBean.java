@@ -81,11 +81,11 @@ public class TrajetBean {
 	}
 	
 	public void proposeTrajet() {
+		//call to data layer.
 	}
 	
 	public Set<UserBean> retrievePassengers() {
-		
-		return null;
+		return this.getPassengers();
 	}
 	
 }

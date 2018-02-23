@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import covoit.beans.AuthBean;
 import covoit.beans.UserBean;
 
@@ -40,6 +42,11 @@ public class AuthSrv extends HttpServlet {
 		if(logout != null) {
 			HttpSession session = request.getSession();
 			session.invalidate();
+			
+			// send json deco to UI.
+			Gson gson = new Gson();
+			String respJSON = "DECO";
+			respJSON = gson.toJson(respJSON);
 		}
 		
 		// grab auth form view.
@@ -58,6 +65,10 @@ public class AuthSrv extends HttpServlet {
 		
 		// verify if email/pwd pair in db for any user.
 		AuthBean auth = new AuthBean(email, pwd);
+		
+		Gson gson = new Gson();
+		String respJSON = "";
+		
 		if( auth.isValidUser() ) {
 			//logon
 			HttpSession session = request.getSession();
@@ -68,10 +79,16 @@ public class AuthSrv extends HttpServlet {
 			session.setAttribute("user", user);
 			
 			//Retourner data user en json to front.
+			respJSON = gson.toJson(user);
 			
 		} else {
 			// error logon failure.
+			respJSON = gson.toJson("auth failure");
 		}
+		
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(respJSON);
 		
 	}
 
