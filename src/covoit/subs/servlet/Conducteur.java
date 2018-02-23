@@ -15,15 +15,15 @@ import covoit.user.bean.User;
 /**
  * Servlet implementation class JsonSrv
  */
-@WebServlet("/JsonSrv")
-public class JsonSrv extends HttpServlet {
+@WebServlet("/conducteur")
+public class Conducteur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private User user;
+	private User conducteur;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JsonSrv() {
+    public Conducteur() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,10 +33,10 @@ public class JsonSrv extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("debut");
-		user = new User("deriot","jonathanderiot@gmail.com","fergregze");
+		conducteur = new User("deriot","jonathanderiot@gmail.com","fergregze");
 		
 		Gson gson = new Gson();
-		String json = gson.toJson(user);
+		String json = gson.toJson(conducteur);
 		System.out.println(json);
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

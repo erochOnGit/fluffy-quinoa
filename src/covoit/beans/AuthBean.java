@@ -29,4 +29,11 @@ public class AuthBean {
 		return false;
 	}
 	
+	/**
+	 * Charger user selon auth.
+	 */
+	public UserBean retrieveUser() {
+		return null;
+	}
+	
 }

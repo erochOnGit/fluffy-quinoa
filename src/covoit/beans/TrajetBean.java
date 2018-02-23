@@ -80,8 +80,13 @@ public class TrajetBean {
 		this.arr_date = arr_date;
 	}
 	
-	public void ProposerTrajet(LocationBean _departure, LocationBean _arrival, UserBean _driver, Set<UserBean> _passengers,
+	public void proposerTrajet(LocationBean _departure, LocationBean _arrival, UserBean _driver, Set<UserBean> _passengers,
 			Date _dep_date, Date _arr_date){
 		//TrajetBean nouveauTrajet = new TrajetBean(_departure, _arrival, _driver, null, _dep_date, _arr_date);
 	}
+	
+	public Set<UserBean> retrievePassengers() {
+		return this.getPassengers();
+	}
+	
 }
