@@ -23,8 +23,9 @@ import covoit.beans.*;
 public class TrajetsSrv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static String VIEW_PAGES_URL="/WEB-INF/trip/trip.jsp";
-	
+
 	public static final String PASSENGERS_PARAM = "passengers";
+	public static String TRAJETS_PARAM = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,9 +40,19 @@ public class TrajetsSrv extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String showPassengers = request.getParameter(PASSENGERS_PARAM);
+		String showTrajets = request.getParameter(TRAJETS_PARAM);
 		
 		HttpSession session = request.getSession();
+		
 		TrajetBean trajet = (TrajetBean)session.getAttribute("trajet");
+		
+		if(showTrajets != null && trajet != null) {
+			Gson gson = new Gson();
+			String respJSON = gson.toJson(trajet);
+			response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
+	        response.getWriter().write(respJSON);
+		}
 		
 		if(showPassengers != null && trajet != null) {
 			Gson gson = new Gson();
@@ -74,8 +85,24 @@ public class TrajetsSrv extends HttpServlet {
 		
 		TrajetBean trajetBean = new TrajetBean(departure,arrival, driver, passengers,dep_date,arr_date);
 		
-		System.out.println(trajetBean.getDeparture());		
-	
+		//System.out.println(trajetBean.proposerTrajet());		
+		
+		Gson gson = new Gson();
+		String respJSON = "";
+
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(15);
+		
+		session.setAttribute("trajet", trajetBean);
+		respJSON = gson.toJson(trajetBean);
+		
+		TRAJETS_PARAM = respJSON;
+		
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(respJSON);
+		
+
 	}
 
 }

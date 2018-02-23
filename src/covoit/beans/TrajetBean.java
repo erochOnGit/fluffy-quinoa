@@ -95,4 +95,10 @@ public class TrajetBean {
 		return this.getPassengers();
 	}
 	
+	public TrajetBean retrieveTrajet() {
+		return null;
+	}
+	
+	
+	
 }
