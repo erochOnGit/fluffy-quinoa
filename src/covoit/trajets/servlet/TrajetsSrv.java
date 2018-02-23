@@ -1,6 +1,10 @@
 package covoit.trajets.servlet;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import covoit.beans.TrajetBean;
+import covoit.beans.*;
 
 /**
  * Servlet implementation class TrajetsSrv
@@ -56,15 +60,21 @@ public class TrajetsSrv extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		String departure = request.getParameter("departure");
-		String arrival = request.getParameter("arrival");
-		String dep_date = request.getParameter("dep_date");
-		String arr_date = request.getParameter("arr_date");
+		LocationBean departure = new LocationBean(request.getParameter("departure"), 1.58, 2.78);
+		LocationBean arrival =  new LocationBean(request.getParameter("arrival"), 9.84, 0.63);
+		UserBean driver = new UserBean("john", "smith", "john.smith@email.com", "0506070809", "abc123");
+		UserBean passenger1 = new UserBean("rick", "sanchez", "rick.sanchez@email.com", "0506070809", "abc123");
+		UserBean passenger2 = new UserBean("morty", "smith", "morty.smith@email.com", "0506070809", "abc123");
+		Set<UserBean> passengers = new HashSet<>();
+		Date dep_date = new Date();
+		Date arr_date = new Date();
 		
-		System.out.println(departure);
-		System.out.println(arrival);
-		System.out.println(dep_date);
-		System.out.println(arr_date);
+		passengers.add(passenger1);		
+		passengers.add(passenger2);
+		
+		TrajetBean trajetBean = new TrajetBean(departure,arrival, driver, passengers,dep_date,arr_date);
+		
+		System.out.println(trajetBean.getDeparture());		
 	
 	}
 

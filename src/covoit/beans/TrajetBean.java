@@ -22,8 +22,13 @@ public class TrajetBean {
 	 * @param dep_date
 	 * @param arr_date
 	 */
-	public TrajetBean(LocationBean departure, LocationBean arrival, UserBean driver, Set<UserBean> passengers,
-			Date dep_date, Date arr_date) {
+	public TrajetBean(
+			LocationBean departure, 
+			LocationBean arrival, 
+			UserBean driver, 
+			Set<UserBean> passengers,
+			Date dep_date, 
+			Date arr_date) {
 		super();
 		this.departure = departure;
 		this.arrival = arrival;
