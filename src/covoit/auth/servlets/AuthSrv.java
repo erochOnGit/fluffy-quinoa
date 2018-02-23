@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import covoit.beans.AuthBean;
+import covoit.beans.UserBean;
 
 /**
  * Servlet implementation class AuthSrv
@@ -36,7 +38,8 @@ public class AuthSrv extends HttpServlet {
 		// if logout param then log off and close/clean user session.
 		String logout = request.getParameter(LOGOUT_PARAM);
 		if(logout != null) {
-			
+			HttpSession session = request.getSession();
+			session.invalidate();
 		}
 		
 		// grab auth form view.
@@ -57,6 +60,15 @@ public class AuthSrv extends HttpServlet {
 		AuthBean auth = new AuthBean(email, pwd);
 		if( auth.isValidUser() ) {
 			//logon
+			HttpSession session = request.getSession();
+			session.setMaxInactiveInterval(15);
+			
+			//TOTO: get user from DB.
+			UserBean user = auth.retrieveUser();
+			session.setAttribute("user", user);
+			
+			//Retourner data user en json to front.
+			
 		} else {
 			// error logon failure.
 		}
