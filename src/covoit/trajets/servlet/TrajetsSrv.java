@@ -74,7 +74,21 @@ public class TrajetsSrv extends HttpServlet {
 		
 		TrajetBean trajetBean = new TrajetBean(departure,arrival, driver, passengers,dep_date,arr_date);
 		
-		System.out.println(trajetBean.getDeparture());		
+		//System.out.println(trajetBean.proposerTrajet());		
+		
+		Gson gson = new Gson();
+		String respJSON = "";
+
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(15);
+		
+		session.setAttribute("trajet", trajetBean.retrieveTrajet());
+		respJSON = gson.toJson(trajetBean.retrieveTrajet());
+		
+		response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(respJSON);
+		
 	
 	}
 
