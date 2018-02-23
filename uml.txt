@@ -1,25 +1,29 @@
 @startuml
-User <|-- Object
-Trajet o-- User
 
+User <|-- Object
+Trajet <|-- Object
+Trajet o-- User
+Trajet o-- location
 class User {
- -id
- #firstName
- #lastName
- ~method1()
- +method2()
+ -id : number
+ -Password : String
+ #firstName : String
+ #lastName : String
+ #email: String
+ #tel:String
 }
 class Trajet{
  id
+ #horaire
+ -start:location
+ -arrival:location
  -conducteur : User
  #passager : User[]
- -getConducteur(id) : User
- -setConducteur(id,User) 
- #getPassager(id) : User
- #setPassager(id,User)
 }
-
-ArrayList : Object[] elementData
-ArrayList : size()
+class location{
+ - name:String
+ - Lat:Number
+ - Lng:Number
+}
 
 @enduml
