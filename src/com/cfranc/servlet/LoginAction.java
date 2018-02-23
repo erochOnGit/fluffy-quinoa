@@ -18,7 +18,7 @@ public class LoginAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	// View
-    public static String VIEW_PAGES_URL="/WEB-INF/login.jsp";
+    public static String VIEW_PAGES_URL="/index.html";
     
     // Form fields
     public static final String FIELD_EMAIL = "email";
@@ -33,6 +33,7 @@ public class LoginAction extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+    
     public LoginAction() {
         super();
         // TODO Auto-generated constructor stub
@@ -44,10 +45,16 @@ public class LoginAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Prepare model to view
         request.setAttribute("statusOK", false);
-        request.setAttribute("statusMessage", "");
+        request.setAttribute("statusMessage", "jeanmichel");
+        
+        String json = "{\"hey\":\"azerty\"}";
+        
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
         
         // Build view
-		this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).include( request, response );
+		//this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).include( request, response );
 	}
 
 	/**
