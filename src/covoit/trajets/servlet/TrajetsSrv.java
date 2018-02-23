@@ -56,6 +56,16 @@ public class TrajetsSrv extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		String departure = request.getParameter("departure");
+		String arrival = request.getParameter("arrival");
+		String dep_date = request.getParameter("dep_date");
+		String arr_date = request.getParameter("arr_date");
+		
+		System.out.println(departure);
+		System.out.println(arrival);
+		System.out.println(dep_date);
+		System.out.println(arr_date);
+	
 	}
 
 }

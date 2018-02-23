@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class TrajetBean {
 	
+	private Integer id;
 	private LocationBean departure;
 	private LocationBean arrival;
 	private UserBean driver;
