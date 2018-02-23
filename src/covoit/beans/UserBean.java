@@ -55,5 +55,4 @@ public class UserBean implements Serializable {
 		return "UserBean [firstname=" + firstname + ", pwd=" + pwd + ", email=" + email + "]";
 	}
 	
-	
 }

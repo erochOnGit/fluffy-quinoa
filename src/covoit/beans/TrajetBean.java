@@ -80,5 +80,12 @@ public class TrajetBean {
 		this.arr_date = arr_date;
 	}
 	
+	public void proposeTrajet() {
+		//call to data layer.
+	}
+	
+	public Set<UserBean> retrievePassengers() {
+		return this.getPassengers();
+	}
 	
 }
