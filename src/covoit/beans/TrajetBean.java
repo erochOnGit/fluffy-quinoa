@@ -80,6 +80,12 @@ public class TrajetBean {
 		this.arr_date = arr_date;
 	}
 	
-	public void ProposerTrajet() {
+	public void proposeTrajet() {
 	}
+	
+	public Set<UserBean> retrievePassengers() {
+		
+		return null;
+	}
+	
 }
