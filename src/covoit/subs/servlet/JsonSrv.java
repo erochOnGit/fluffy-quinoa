@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import covoit.user.bean.User;
+import covoit.user.bean.UserBean;
 
 /**
  * Servlet implementation class JsonSrv
@@ -18,7 +18,7 @@ import covoit.user.bean.User;
 @WebServlet("/JsonSrv")
 public class JsonSrv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private User user;
+	private UserBean user;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,8 +32,7 @@ public class JsonSrv extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("debut");
-		user = new User("deriot","jonathanderiot@gmail.com","fergregze");
+		user = new UserBean("Jonathan", "DERIOT", "jonathanderiot@gmail.com","06765674656", "fkfjgkrejdg");
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(user);

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import covoit.user.bean.UserBean;
+
 /**
  * Servlet implementation class Inscription
  */
@@ -48,7 +50,13 @@ public class SubSrv extends HttpServlet {
 	        validatePwd(pwd, pwdConfirm);
 	        validateName(name);
 	        validateTel(tel);
-	        this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).include( request, response );
+	       //this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).include( request, response );
+	        
+	        //TODO: créer userbean
+	        UserBean user = new UserBean(name, lastName, email, tel, pwd);
+	        
+	        //TODO: persister l utilisateur en base
+	        
 	        
 	        response.getWriter().println("Utilisateur enregistré avec succès");
 	    } catch (Exception e) {
