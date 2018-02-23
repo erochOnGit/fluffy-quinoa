@@ -15,9 +15,9 @@
 		<label for="arrival">Arrival <span class="requis">*</span></label>
 		<input type="text" name="arrival" id="arrival"><br>
 		<label for="dep_date">Departs at <span class="requis">*</span></label>
-		<input type="date" name="dep_date" id="dep_date"><br>
+		<input type="text" name="dep_date" id="dep_date"><br>
 		<label for="arr_date">Arrives at <span class="requis">*</span></label>
-		<input type="date" name="arr_date" id="arr_date"><br>
+		<input type="text" name="arr_date" id="arr_date"><br>
 		<input type="submit" class="sansLabel" value="Submit">		
 	</fieldset>
 </form>

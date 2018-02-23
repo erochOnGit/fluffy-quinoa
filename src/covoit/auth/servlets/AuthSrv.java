@@ -47,6 +47,10 @@ public class AuthSrv extends HttpServlet {
 			Gson gson = new Gson();
 			String respJSON = "DECO";
 			respJSON = gson.toJson(respJSON);
+			
+			response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
+	        response.getWriter().write(respJSON);
 		}
 		
 		// grab auth form view.
@@ -80,6 +84,8 @@ public class AuthSrv extends HttpServlet {
 			
 			//Retourner data user en json to front.
 			respJSON = gson.toJson(user);
+			
+			System.out.println(respJSON);
 			
 		} else {
 			// error logon failure.
