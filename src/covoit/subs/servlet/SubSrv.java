@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import covoit.connect.ConnectionBDD;
 import covoit.user.bean.UserBean;
 
 /**
@@ -60,9 +61,14 @@ public class SubSrv extends HttpServlet {
 	        UserBean user = new UserBean(firstName, lastName, email, tel, pwd);
 	        
 	        //serialisation
-	        Gson gson = new Gson();
-	        String json = gson.toJson(user);
-	        System.out.println(json);
+	        //Gson gson = new Gson();
+	        //String jsonUser = gson.toJson(user);
+	        //System.out.println(json);
+	        String sql = "INSERT INTO users ('last_name','first_name', 'email', 'password', 'phone')";
+	        ConnectionBDD cBdd = new ConnectionBDD();
+	        cBdd.connect();
+	        cBdd.insert(sql);
+	        
 	        
 	        response.getWriter().println("Utilisateur enregistré avec succès");
 	    } catch (Exception e) {
