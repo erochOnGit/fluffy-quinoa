@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import covoit.user.bean.UserBean;
 
 /**
@@ -29,7 +31,7 @@ public class SubSrv extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).forward(request,response);
 	}
 
 	/**
@@ -37,7 +39,7 @@ public class SubSrv extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String name = request.getParameter("name");
+		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		String tel = request.getParameter("tel");
@@ -46,17 +48,21 @@ public class SubSrv extends HttpServlet {
 	    
 
 	    try {
+	    		validateFirstName(firstName);
+	    		validateLastName(lastName);
+	    		validateTel(tel);
 	        validateEmail(email);
 	        validatePwd(pwd, pwdConfirm);
-	        validateName(name);
-	        validateTel(tel);
+	        
 	       //this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).include( request, response );
 	        
-	        //TODO: créer userbean
-	        UserBean user = new UserBean(name, lastName, email, tel, pwd);
+	        //create user
+	        UserBean user = new UserBean(firstName, lastName, email, tel, pwd);
 	        
-	        //TODO: persister l utilisateur en base
-	        
+	        //serialisation
+	        Gson gson = new Gson();
+	        String json = gson.toJson(user);
+	        System.out.println(json);
 	        
 	        response.getWriter().println("Utilisateur enregistré avec succès");
 	    } catch (Exception e) {
@@ -65,9 +71,24 @@ public class SubSrv extends HttpServlet {
 	    }	        
 	}
 	
+	private void validateFirstName( String name ) throws ServletException{
+		if (name.length() == 0) {
+			throw new ServletException( "Veuillez saisir votre prenom" );
+		}
+		
+	}
+	
+	private void validateLastName( String name ) throws ServletException{
+		if (name.length() == 0) {
+			throw new ServletException( "Veuillez saisir votre nom" );
+		}
+		
+	}
+	
+	
 	private void validateTel( String tel ) throws ServletException{
 		if ( tel != null && tel.trim().length() != 0 ) {
-			if ( !tel.matches( "[0][5-9][[0-9]{8}" ) ) {
+			if ( !tel.matches( "[0][1-9][0-9]{8}" ) ) {
 				throw new ServletException( "Veuillez saisir un numéro de téléphoe valide" );
 			}
 		}
@@ -88,11 +109,17 @@ public class SubSrv extends HttpServlet {
 	}
 	private void validatePwd(String pwd1, String pwd2) throws ServletException{
 
-		if( !(pwd1.equals(pwd2)) ){
+		if (pwd1.length() < 8) {
+			throw new ServletException( "mot de passe inférieur a 8 caractères!" );
+		}
+		else if(pwd1.length() > 20) {
+			throw new ServletException( "mot de passe supérieur a 20 caractères!" );
+		}
+		
+		else if( !(pwd1.equals(pwd2)) ){
 			throw new ServletException( "Les mots de passe doivent être identiques" );
 		}
 	}
-	private void validateName(String name) throws ServletException{}
 
 	
 	}
