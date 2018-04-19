@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.google.gson.Gson;
-
 import covoit.connect.ConnectionBDD;
 import covoit.user.bean.UserBean;
 
@@ -70,10 +68,10 @@ public class SubSrv extends HttpServlet {
 	        //essai
 	        int mail = 2;
 	        int ashPwd = 2;
-	        String sql = "INSERT INTO users ('last_name','first_name','email','password','phone') VALUES (lastName, firstName, mail, ashPwd, tel)";
+	        String sql = "INSERT INTO users ('email','password','last_name','first_name','phone') VALUES (mail, ashPwd,lastName, firstName, tel)";
 	        //fin essai
 	        ConnectionBDD cBdd = new ConnectionBDD();
-	        cBdd.connect();
+	        //cBdd.connect();
 	        cBdd.insert(sql);
 	        
 	        

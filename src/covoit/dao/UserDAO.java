@@ -18,5 +18,4 @@ public class UserDAO {
 	private String email;
 	private String tel;
 	private String pwd;
-
 }
