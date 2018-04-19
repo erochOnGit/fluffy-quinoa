@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.google.gson.Gson;
 
 import covoit.connect.ConnectionBDD;
@@ -60,11 +62,16 @@ public class SubSrv extends HttpServlet {
 	        //create user
 	        UserBean user = new UserBean(firstName, lastName, email, tel, pwd);
 	        
-	        //serialisation
-	        //Gson gson = new Gson();
-	        //String jsonUser = gson.toJson(user);
-	        //System.out.println(json);
-	        String sql = "INSERT INTO users ('last_name','first_name', 'email', 'password', 'phone')";
+	        //hash pwd
+	        
+	        System.out.println(pwd);
+	        String hashPwd = BCrypt.hashpw(pwd, BCrypt.gensalt());
+	        System.out.println(hashPwd);
+	        //essai
+	        int mail = 2;
+	        int ashPwd = 2;
+	        String sql = "INSERT INTO users ('last_name','first_name','email','password','phone') VALUES (lastName, firstName, mail, ashPwd, tel)";
+	        //fin essai
 	        ConnectionBDD cBdd = new ConnectionBDD();
 	        cBdd.connect();
 	        cBdd.insert(sql);

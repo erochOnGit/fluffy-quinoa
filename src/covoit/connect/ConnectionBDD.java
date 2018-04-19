@@ -10,6 +10,12 @@ public class ConnectionBDD {
 	
 	public Connection connect() {
 		//SQLite connection string
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String url = "jdbc:sqlite:/Users/deriot/Documents/workspace-sts-3.9.0.RELEASE/essaiCovoit/CovoitDB.db";
 		Connection conn = null;
 		try {
