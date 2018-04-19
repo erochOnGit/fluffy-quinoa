@@ -9,15 +9,23 @@ import java.sql.Statement;
 public class ConnectionBDD {
 	
 	public Connection connect() {
-		//SQLite connection string
-		String url = "jdbc:sqlite:/Users/deriot/Documents/workspace-sts-3.9.0.RELEASE/essaiCovoit/CovoitDB.db";
-		Connection conn = null;
+		
+		String response = "";
 		try {
-			conn = DriverManager.getConnection(url);
-		} catch(SQLException e) {
-			System.out.println(e.getMessage());
+			Class.forName("com.mysql.jdbc.Driver");
+			response += "okClass ";
 		}
-		return conn;
+		catch (Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		try {
+			return DriverManager.getConnection("jdbc:mysql://mysql-.alwaysdata.net","artas_covoit_ipi","789456123");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}  
 	}
 	
 	public void insert(String sql) {
